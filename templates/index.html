@@ -6,10 +6,13 @@
 {% block body %}
 <div class="container">
     <h1>Your recipes</h1>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
+            Add new recipe
+        </button>
     <table class="table table-dark table-hover">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Time</th>
                 <th scope="col">Coffee weight</th>
@@ -21,7 +24,6 @@
         <tbody>
             {%for recipe in recipes %}
             <tr>
-                <td>{{recipe.id}}</th>
                 <td>{{recipe.name}}</td>
                 <td>{{recipe.time}}s</td>
                 <td>{{recipe.coffee}}g</td>
@@ -30,18 +32,13 @@
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal"
                         data-recipe-id="{{recipe.id}}">Update</button>
-                        <a href="/delete/{{recipe.id}}"><button type="button" class="btn btn-secondary">Delete</button></a>
-                        
+                    <a href="/delete/{{recipe.id}}"><button type="button" class="btn btn-secondary">Delete</button></a>
+
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
-        Add new recipe
-    </button>
 
     <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
         aria-hidden="true">
@@ -50,7 +47,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="formModalLabel">New recipe</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+                </div>
                 <form id="recipe-form" action="/" method="POST">
                     <div class="modal-body">
                         <input type="text" name="name" id="recipe-name" placeholder="Recipe name">
