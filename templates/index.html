@@ -28,8 +28,10 @@
                 <td>{{recipe.water}}g</td>
                 <td>{{recipe.description}}</td>
                 <td>
-                    <a href="/update/{{recipe.id}}">Update</a>
-                    <a href="/delete/{{recipe.id}}">Delete</a>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal"
+                        data-recipe-id="{{recipe.id}}">Update</button>
+                        <a href="/delete/{{recipe.id}}"><button type="button" class="btn btn-secondary">Delete</button></a>
+                        
                 </td>
             </tr>
             {% endfor %}
@@ -37,8 +39,36 @@
     </table>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
         Add new recipe
     </button>
+
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formModalLabel">New recipe</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                <form id="recipe-form" action="/" method="POST">
+                    <div class="modal-body">
+                        <input type="text" name="name" id="recipe-name" placeholder="Recipe name">
+                        <input type="text" name="time" id="recipe-time" placeholder="Time">
+                        <input type="text" name="water" id="recipe-water" placeholder="Water weight (g)">
+                        <input type="text" name="coffee" id="recipe-coffee" placeholder="Coffee weight (g)">
+                        <input type="text" name="description" id="recipe-description" placeholder="Description">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="../static/js/formModal.js"></script>
 {% endblock %}

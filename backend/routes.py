@@ -46,4 +46,4 @@ def update_recipe(id):
         except:
             return 'There was an error updating the recipe'
     else:
-        return render_template('form.html', recipe=recipe_to_update)
+        return {'name': recipe_to_update.name, 'time': recipe_to_update.time, 'coffee': recipe_to_update.coffee, 'water': recipe_to_update.water, 'description': recipe_to_update.description}
