@@ -4,34 +4,33 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row m-4 da">
+<div class="container-fluid">
+    <div class="container">
+    <div class="row">
         <div class="col align-self-center">
-            <h1 class="text-light">Your coffee recipes</h1>
+        <h1 class="text-light">Your coffee recipes</h1>
         </div>
-    </div>
-    <div class="row m-4">
-
+      </div>
+    <div class="row">
         <div class="d-flex justify-content-center align-self-center">
-            <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
-                data-bs-target="#formModal">
+            <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#formModal">
                 New recipe
             </button>
         </div>
     </div>
-
+    
     {% if recipes|length < 1 %}
     <div class="row">
         <div class="col align-self-center">
             CREATE A NEW RECIPE BRUH
         </div>
     </div>
-
+    
     {% else %}
-    <table class="table table-light table-striped align-middle">
-        <thead class="table-dark">
+    <table class="table table-dark table-striped">
+        <thead>
             <tr>
-                <th scope="col" class="w-25">Name</th>
+                <th scope="col" class="w-25 p-3">Name</th>
                 <th scope="col">Time</th>
                 <th scope="col">Coffee weight</th>
                 <th scope="col">Water weight</th>
@@ -49,12 +48,14 @@
                 <td>{{recipe.description}}</td>
                 <td>
                     <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-success" style="background-color: red-700;"
+                        <button type="button" class="btn btn-primary " style="background-color: red-700;"
                             data-bs-toggle="modal" data-bs-target="#formModal"
                             data-recipe-id="{{recipe.id}}">Update</button>
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                             data-bs-target="#deleteModal" data-recipe-delete-id="{{recipe.id}}">Delete</button>
                     </div>
+
+
                 </td>
             </tr>
             {% endfor %}
@@ -133,6 +134,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock %}

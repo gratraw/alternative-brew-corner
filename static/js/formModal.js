@@ -9,8 +9,7 @@ formModal.addEventListener('show.bs.modal', function (event) {
             url: "/update/" + recipe,
             method: "GET",
             success: function (data) {
-                var modal = $(this)
-                formModal.querySelector('.modal-title').textContent = 'Update a ' + recipe + ' recipe.'
+                formModal.querySelector('.modal-title').textContent = 'Update a ' + data.name + ' recipe.'
                 $('#recipe-name').val(data.name);
                 $('#recipe-time').val(data.time);
                 $('#recipe-water').val(data.water);
@@ -20,8 +19,22 @@ formModal.addEventListener('show.bs.modal', function (event) {
         });
     }
     else {
-        document.getElementById('recipe-form').setAttribute('action', "/")
         formModal.querySelector('.btn-primary').textContent = "Create"
         formModal.querySelector('.modal-title').textContent = 'Create a new recipe.'
+        $('#recipe-name').val('');
+        $('#recipe-time').val('');
+        $('#recipe-water').val('');
+        $('#recipe-coffee').val('');
+        $('#recipe-description').val('');
+        document.getElementById('recipe-form').setAttribute('action', "/")
+    }
+})
+
+var deleteModal = document.getElementById('deleteModal')
+deleteModal.addEventListener('show.bs.modal', function (event) {
+    var buttonDelete = event.relatedTarget
+    var recipeDelete = buttonDelete.getAttribute('data-recipe-delete-id')
+    if (recipeDelete != null) {
+        document.getElementById('recipe-delete').setAttribute('action', "/delete/" + recipeDelete)
     }
 })
