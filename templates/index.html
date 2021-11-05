@@ -5,13 +5,19 @@
 
 {% block body %}
 <div class="container">
-    <div class="row m-4 da">
-        <div class="col align-self-center">
-            <h1 class="text-light">Your coffee recipes</h1>
+    {% if recipes|length < 1 %}
+    <div class="row m-4">
+        <div class="d-flex justify-content-center">
+            <div class="row">
+                <div class="col text-center">
+                    <h2 class="text-light">You don't have any recipes saved :(</h2>
+                    <h3 class="text-light">CREATE A NEW ONE AND ENJOY!</h3>
+                </div>
+            </div>
         </div>
+
     </div>
     <div class="row m-4">
-
         <div class="d-flex justify-content-center align-self-center">
             <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
                 data-bs-target="#formModal">
@@ -20,18 +26,25 @@
         </div>
     </div>
 
-    {% if recipes|length < 1 %}
-    <div class="row">
+    {% else %}
+    <div class="row m-4 da">
         <div class="col align-self-center">
-            CREATE A NEW RECIPE BRUH
+            <h1 class="text-light">Your coffee recipes</h1>
+        </div>
+    </div>
+    <div class="row m-4">
+        <div class="d-flex justify-content-center align-self-center">
+            <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                data-bs-target="#formModal">
+                New recipe
+            </button>
         </div>
     </div>
 
-    {% else %}
     <table class="table table-light table-striped align-middle">
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="w-25">Name</th>
+                <th scope="col" class="mw-25">Name</th>
                 <th scope="col">Time</th>
                 <th scope="col">Coffee weight</th>
                 <th scope="col">Water weight</th>
@@ -42,11 +55,11 @@
         <tbody>
             {% for recipe in recipes %}
             <tr>
-                <td>{{recipe.name}}</td>
+                <td class="w-25 text-break">{{recipe.name}}</td>
                 <td>{{recipe.time}}s</td>
                 <td>{{recipe.coffee}}g</td>
                 <td>{{recipe.water}}g</td>
-                <td>{{recipe.description}}</td>
+                <td class="w-25  text-break">{{recipe.description}}</td>
                 <td>
                     <div class="d-grid gap-2">
                         <button type="button" class="btn btn-success" style="background-color: red-700;"

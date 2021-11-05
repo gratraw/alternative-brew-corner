@@ -1,18 +1,11 @@
 .coffeeBackground {
-    display: flex;
-    position: inherit;
-}
-
-.coffeeBackground:after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: url('../img/coffee_bg.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    filter: brightness(70%);
-    z-index: -1;
+        position: fixed;
+        z-index: -1;
+        background-image: url('../img/coffee_bg.jpg');
+        background-repeat: repeat;
+        background-size: cover;
+        top:0;
+        width: 100vw;
+        height: 100vh;
+        filter: brightness(60%);
 }
